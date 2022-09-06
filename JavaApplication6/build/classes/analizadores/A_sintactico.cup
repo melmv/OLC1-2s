@@ -1,0 +1,52 @@
+package analizadores;
+import java_cup.runtime.Symbol;
+
+
+parser code
+{:
+    public String codigoTraducido="";
+     
+:}
+
+//definicion de terminales
+terminal pr_system,pr_out,pr_println,s_punto,id,s_par_a,s_par_c,s_puntoComa;
+
+
+//definicion de no terminales
+non terminal INICIO, L, I,PRINT;
+
+
+
+//gramatica
+start with INICIO;
+
+INICIO::= L   {:System.out.println(codigoTraducido);  :}; 
+
+
+L::= I L
+    |I   
+;
+
+I::= PRINT {:System.out.println("reconoci un print");  :}
+    |asignar
+    |declarac
+
+;
+
+PRINT::= pr_system s_punto pr_out s_punto pr_println s_par_a  s_par_c s_puntoComa  
+{: 
+        
+        codigoTraducido+="\nconsole.log()";
+:}
+;
+
+
+
+
+
+
+
+
+
+
+/*java -jar java-cup-11b.jar -parser Analizador_sintactico -symbols Simbolos A_sintactico.cup*/
