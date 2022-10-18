@@ -1,0 +1,4 @@
+int hola ;
+char mundo ;
+int olc;
+string nombe;
